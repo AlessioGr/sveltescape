@@ -12,7 +12,7 @@ export const FooterConfig: Story = {
             specialType: "hexColor"
         },
         "logoSRC": {
-            defaultValue: "/assets/brand/logo.svg",
+            defaultValue: "https://www.bonfireleads.com/wp-content/uploads/2020/08/Bonfire-Leads-Logo-Horizontal-1.svg",
             type: "string",
         },
         "logoWidth": {
