@@ -8,6 +8,7 @@
 		"url": "https://www.bonfireleads.com"
 	},
 	"private": false,
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
