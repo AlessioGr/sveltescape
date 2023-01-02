@@ -6,6 +6,10 @@ SvelteScape is a Storybook alternative made for Svelte. Its goal is to also allo
 - Allows more complex data structures to be edited
 - Prop pre- and post-processors, to move load from the svelte component to SvelteScape. Very useful in the shapes example, so you do not have to ship an entire SVG curve generator with negative runtime performance benefits. Instead, this generates the svg paths via the postprocessor. => [Example](https://github.com/AlessioGr/sveltescape/blob/master/src/lib/storyconfigs/Shapes.ts) => [Result](https://story.bonfireleads.com/Shapes)
 
+## How to use
+
+Stories/components are currently intermingled with sveltescape in order to allow easier development & testing of sveltescape. Pretty much just follow those examples.
+
 ## Developing
 
 Once you've created a project and installed dependencies with `pnpm install`, start a development server:
