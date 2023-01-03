@@ -1,12 +1,12 @@
 <script lang="ts">
 	import PropDisplay from '$components/PropDisplay.svelte';
-	import type { Props, Story } from '$lib/types';
+	import type { Props, Story, PropsArray } from '$lib/types';
 	import { initStoryPropsAndOutputProps } from '$lib/PropManager';
 	import { fly } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 
-	export let parent: Story | Props | Props[];
-	export let props: Props | Props[];
+	export let parent: Story | Props | PropsArray;
+	export let props: Props | PropsArray;
 
 	export let indent = 0;
 
@@ -14,17 +14,17 @@
 
 	export let propName: string;
 
-	$: if (!Array.isArray(parent) && parent.props && parent.enabled !== false) {
+	$: if (!('component' in parent) && parent.enabled !== false) {
 		parent.enabled = true;
 	}
 
 	let loadedInitial = false;
 	$: handleStoryPropsEdited(props);
-	function handleStoryPropsEdited(props: Props | Props[]) {
+	function handleStoryPropsEdited(props: Props | PropsArray) {
 		if (!loadedInitial) {
 			console.log('Init props...');
 			if (Array.isArray(props)) {
-				for (const propsSingle of props as Props[]) {
+				for (const propsSingle of props as PropsArray) {
 					initStoryPropsAndOutputProps(propsSingle as Props, true);
 				}
 			} else {
@@ -37,7 +37,7 @@
 	function addMore() {
 		if (array) {
 			shouldAnimate = true;
-			(props as Props[]).push(structuredClone(props[0]));
+			(props as PropsArray).push(structuredClone(props[0]));
 			props = props;
 		}
 	}
@@ -45,7 +45,7 @@
 	function removeMore(index) {
 		if (array) {
 			shouldAnimate = true;
-			(props as Props[]).splice(index, 1);
+			(props as PropsArray).splice(index, 1);
 			props = props;
 		}
 	}
@@ -56,9 +56,9 @@
 			if (index <= 0) {
 				return;
 			}
-			const cur = (props as Props[])[index];
-			(props as Props[])[index] = (props as Props[])[index - 1];
-			(props as Props[])[index - 1] = cur;
+			const cur = (props as PropsArray)[index];
+			(props as PropsArray)[index] = (props as PropsArray)[index - 1];
+			(props as PropsArray)[index - 1] = cur;
 			props = props;
 		}
 	}
@@ -66,12 +66,12 @@
 	function moveDown(index) {
 		if (array) {
 			shouldAnimateMove = true;
-			if (index >= (props as Props[]).length - 1) {
+			if (index >= (props as PropsArray).length - 1) {
 				return;
 			}
-			const cur = (props as Props[])[index];
-			(props as Props[])[index] = (props as Props[])[index + 1];
-			(props as Props[])[index + 1] = cur;
+			const cur = (props as PropsArray)[index];
+			(props as PropsArray)[index] = (props as PropsArray)[index + 1];
+			(props as PropsArray)[index + 1] = cur;
 			props = props;
 		}
 	}
@@ -96,7 +96,9 @@
 </script>
 
 <div style="margin-left: {indent}em;" class="flex flex-row gap-1 items-center">
-	<input id={propName + indent + uuidFromTime} type="checkbox" bind:checked={parent.enabled} />
+	{#if !('component' in parent)}
+		<input id={propName + indent + uuidFromTime} type="checkbox" bind:checked={parent.enabled} />
+	{/if}
 	<label for={propName + indent + uuidFromTime} class="font-bold text-lg"
 		>{propName} props {indent} {array ? ' (Array)' : ''}</label
 	>

@@ -1,4 +1,4 @@
-import type {Props, Story} from "$lib/types";
+import type {Props, PropsArray, Story} from "$lib/types";
 import {generateBezierCurveSVG, generateZigZagSVG} from "$components/stories/SVGGenerator";
 import Shapes from "$components/stories/Shapes.svelte";
 
@@ -152,8 +152,8 @@ export const ShapesConfig: Story = {
         console.error("Running preprocessor", props)
         const shapesProp = props["shapes"];
         if(shapesProp && shapesProp.props) {
-            shapesProp.props = parseShapes(shapesProp.props as Props[])
-            /*for (const shapeProps of (shapesProp.props as Props[]))
+            shapesProp.props = parseShapes(shapesProp.props as PropsArray)
+            /*for (const shapeProps of (shapesProp.props as PropsArray))
             {
                 const colorCSS = shapeProps["colorCSS"];
                 if (colorCSS) {
@@ -193,7 +193,7 @@ export const ShapesConfig: Story = {
 
 };
 
-function parseShapes(shapes: Props[]){
+function parseShapes(shapes: PropsArray){
     for(const shape of shapes){
         if(shape.direction.value === "top" && shape.invertY.value === undefined) {
             shape.invertY.value = true;

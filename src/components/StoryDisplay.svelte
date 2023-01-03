@@ -33,7 +33,7 @@
 	//$: console.log("Props now:", props);
 
 	/*function findStoryPropFromDeepKey(parentPath: string[], key: string){ //TODO
-        let currentProps: Props|Props[] = story.props;
+        let currentProps: Props|PropsArray = story.props;
         for(const pathKey of parentPath){
             if(Array.isArray(currentProps)){
                 for(const props of currentProps){

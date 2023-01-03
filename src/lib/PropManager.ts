@@ -1,4 +1,4 @@
-import type { Props, Story } from '$lib/types';
+import type { Props, Story, PropsArray } from '$lib/types';
 import pkg from 'really-relaxed-json';
 import type { ProcessedValue, Prop } from '$lib/types';
 import { toRelaxedJson } from '$lib/config';
@@ -47,7 +47,7 @@ export function initStoryPropsAndOutputProps(
 				}
 				if (prop.output === false) {
 					outputProps[propKey] = undefined;
-					for (const arrayEntry of prop.props as Props[]) {
+					for (const arrayEntry of prop.props as PropsArray) {
 						initStoryPropsAndOutputProps(arrayEntry as Props, false); //Load just to set default values but ignore localProps
 					}
 					continue;
@@ -55,7 +55,7 @@ export function initStoryPropsAndOutputProps(
 				if (!outputProps[propKey]) {
 					outputProps[propKey] = [];
 				}
-				for (const arrayEntry of prop.props as Props[]) {
+				for (const arrayEntry of prop.props as PropsArray) {
 					outputProps[propKey].push(initStoryPropsAndOutputProps(arrayEntry as Props, false));
 				}
 			}
@@ -140,7 +140,7 @@ export function storyPropsToOutputProps(props: Props, parent: any): Record<strin
 				if (!outputProps[propKey]) {
 					outputProps[propKey] = [];
 				}
-				for (const arrayEntry of prop.props as Props[]) {
+				for (const arrayEntry of prop.props as PropsArray) {
 					outputProps[propKey].push(storyPropsToOutputProps(arrayEntry as Props, prop));
 					if (outputProps[propKey].length === 1 && outputProps[propKey][0].length === 0) {
 						console.error('Handling deletion edge case for ', outputProps[propKey], '...');
@@ -284,7 +284,7 @@ export function outputPropsToStoryProps(
 				storyProps[key].props[counter] = outputPropsToStoryProps(
 					storyProps[key].props[counter],
 					item
-				); //storyProps[key].props is Props[]
+				); //storyProps[key].props is PropsArray
 				counter++;
 			}
 		} /*else if(false){ // no array, but has nested prop?

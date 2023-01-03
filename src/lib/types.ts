@@ -7,7 +7,9 @@ export type Story = {
 	storyPropsPostProcessor?: (props: Props) => Props; //Like storyPropsPreProcessor but changes only the result, not what you can see in the props
 };
 
-export type Props = Record<string, Prop>;
+export type Props = Record<string, Prop> & {enabled?: boolean};
+
+export type PropsArray = Props[] & {enabled?: boolean};
 export interface Prop {
 	array?: boolean;
 	label?: string;
@@ -19,7 +21,7 @@ export interface Prop {
 	specialType?: 'hexColor' | 'enum' | Story;
 	specialTypeArgs?;
 	valuePreprocessor?: (value) => ProcessedValue[];
-	props?: Props | Props[];
+	props?: (Props | PropsArray)
 	input?: boolean; //Controls if the prop should be visible in the prop editor. If set to false, it will still be outputted
 	output?: boolean; //Controls if the prop should be visible in the outputted component code or the component props
 }
