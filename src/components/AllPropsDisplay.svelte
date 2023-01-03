@@ -22,7 +22,6 @@
 	$: handleStoryPropsEdited(props);
 	function handleStoryPropsEdited(props: Props | PropsArray) {
 		if (!loadedInitial) {
-			console.log('Init props...');
 			if (Array.isArray(props)) {
 				for (const propsSingle of props as PropsArray) {
 					initStoryPropsAndOutputProps(propsSingle as Props, true);

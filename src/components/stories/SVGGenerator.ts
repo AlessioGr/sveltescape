@@ -111,7 +111,6 @@ export const generateZigZagSVG = (seed: string, amplitude: number, waveCount: nu
         points.push({x, y});
     }
 
-    console.error("Points", points)
     // Update the maximum height of the zigzag
     waveHeight = Math.max(...points.map(p => p.y));
 

@@ -63,7 +63,6 @@ export function initStoryPropsAndOutputProps(
 		}
 
 		if (prop.type === 'story') {
-			console.warn('Processing story...', prop);
 
 			initStoryPropsAndOutputProps((prop.specialType as Story).props, true);
 			if (prop.defaultValue && prop.enabled !== false) {
@@ -73,14 +72,12 @@ export function initStoryPropsAndOutputProps(
 					true
 				);
 				(prop.specialType as Story).props = initProps;
-				console.error('settting initProps', deepCopy(initProps));
 			}
 
 			outputProps[propKey] = storyPropsToOutputProps(
 				processProps((prop.specialType as Story).props, prop.specialType as Story),
 				null
 			);
-			console.warn('Output...', outputProps[propKey]);
 			return outputProps;
 		}
 
@@ -169,7 +166,6 @@ export function storyPropsToOutputProps(props: Props, parent: any): Record<strin
 		}
 
 		if (prop.type === 'story') {
-			console.warn('Processing story...', prop);
 			outputProps[propKey] = storyPropsToOutputProps(
 				processProps((prop.specialType as Story).props, prop.specialType as Story),
 				null
@@ -299,7 +295,6 @@ export function outputPropsToStoryProps(
 			storyProps[key].value = value;
 		}
 	}
-	console.warn('storyProps result', storyProps);
 	return storyProps;
 }
 

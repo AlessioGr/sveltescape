@@ -149,7 +149,6 @@ export const ShapesConfig: Story = {
         },
     },
     storyPropsPreProcessor: props => {
-        console.error("Running preprocessor", props)
         const shapesProp = props["shapes"];
         if(shapesProp && shapesProp.props) {
             shapesProp.props = parseShapes(shapesProp.props as PropsArray)
@@ -249,7 +248,6 @@ function parseShapes(shapes: PropsArray){
             let result: {dPath: string, height: number};
             if(shape.generatedCurve?.enabled){
                 result = generateBezierCurveSVG(shape.generatedCurve.props.seed.value, shape.generatedCurve.props.amplitude.value, shape.generatedCurve.props.waveCount.value, shape.generatedCurve.props.waveLength.value, shape.generatedCurve.props.invert.value);
-                console.log("Generatedcurve result", result)
             } else if(shape.generatedZigZag?.enabled){
                 result = generateZigZagSVG(shape.generatedZigZag.props.seed.value, shape.generatedZigZag.props.amplitude.value, shape.generatedZigZag.props.waveCount.value, shape.generatedZigZag.props.waveLength.value, shape.generatedZigZag.props.invert.value);
             }

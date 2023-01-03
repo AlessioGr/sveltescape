@@ -128,8 +128,6 @@
     }*/
 
 	function handleStoryPropsEdited(story: Story, props: Props) {
-		console.log('story.props Reactivity');
-
 		/*if(oldStoryName && story.name !== oldStoryName){ //TODO: Not sure if useful
             $page.url.searchParams.set('props',null);
             if(browser){
@@ -162,13 +160,10 @@
 	}
 	function loadInitial() {
 		loadedInitial = true;
-		console.log('loadinitial 1');
 		initStoryPropsAndOutputProps(story.props, true);
 		propResults = initStoryPropsAndOutputProps(processProps(story.props, story), true);
-		console.log('loadinitial 2');
 		oldStoryName = story.name;
 		propsString = propsOutputToPropsString(propResults);
-		console.log('loadinitial 3');
 		updateFinalComponentCodeValueFromPropEditor();
 	}
 
@@ -180,26 +175,19 @@
 	function updateFinalComponentCodeValueFromPropEditor() {
 		automaticComponentCodeValueUpdate = true;
 		finalComponentCodeValue = '<' + story.name + ' ' + propsString + '/>';
-		console.log(
-			'%c updateFinalComponentCodeValueFromPropEditor',
-			'background: #222; color: #bada55'
-		);
 	}
 
 	function updatePropEditorFromFinalComponentCodeValue(componentCodeValue) {
 		if (automaticComponentCodeValueUpdate) {
 			automaticComponentCodeValueUpdate = false;
-			console.log('Skipped the update!');
 			return;
 		}
-		console.log('Updating props from component code value...');
 
 		const convertedStoryProps = outputPropsToStoryProps(
 			deepCopy(story.props),
 			finalComponentCodeValueToOutputProps(componentCodeValue, story)
 		);
 		story.props = convertedStoryProps;
-		console.warn('convertedStoryProps', convertedStoryProps);
 		automaticComponentCodeValueUpdate = false;
 		justConvertedComponentCodeValue = true;
 	}
