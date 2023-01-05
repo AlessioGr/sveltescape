@@ -1,6 +1,6 @@
 SvelteScape is a Storybook alternative made for Svelte. Its goal is to also allow managing very complex component, as seen in the [Shapes](https://story.bonfireleads.com/ShapesInteractive) example.
 
-<img width="1723" alt="image" src="https://user-images.githubusercontent.com/70709113/210283373-f419a00e-7340-486c-a1ce-8c60c63e8bfd.png">
+<img width="1728" alt="SvelteScape Screenshot" src="https://user-images.githubusercontent.com/70709113/210838240-47e6d20c-fd47-49a5-a982-732ddafbb805.png">
 
 ## Unique features
 - Allows more complex data structures to be managed
