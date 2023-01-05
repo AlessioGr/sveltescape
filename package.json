@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.29.1",
-		"@sveltejs/kit": "1.0.1",
+		"@sveltejs/kit": "1.0.2",
 		"@types/escape-html": "^1.0.2",
 		"@types/iframe-resizer": "^3.5.9",
 		"@typescript-eslint/eslint-plugin": "^5.48.0",
@@ -43,6 +43,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource/jetbrains-mono": "^4.5.11",
+		"@fontsource/nunito": "^4.5.11",
 		"@rgossiaux/svelte-headlessui": "^1.0.2",
 		"@sveltejs/adapter-cloudflare": "1.0.0",
 		"@types/seedrandom": "^3.0.4",

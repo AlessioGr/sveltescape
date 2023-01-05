@@ -1,4 +1,9 @@
 <script lang="ts">
+	import '@fontsource/nunito/400.css';
+	import '@fontsource/nunito/500.css';
+	import '@fontsource/nunito/700.css';
+	import '@fontsource/jetbrains-mono';
+
 	import 'virtual:windi.css';
 	import '../app.css';
 	import Popover from 'svelte-easy-popover';
